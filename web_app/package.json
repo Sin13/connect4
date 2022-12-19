@@ -2,15 +2,17 @@
   "name": "checkers",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "app.js",
   "scripts": {
-    "dev": "nodemon index.js",
+    "dev": "nodemon app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Sina Jalali",
   "license": "MIT",
   "dependencies": {
-    "express": "^4.18.2"
+    "connect4-ai": "^0.1.3",
+    "express": "^4.18.2",
+    "less": "^4.1.3"
   },
   "devDependencies": {
     "eslint": "^8.27.0",
