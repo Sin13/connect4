@@ -7,9 +7,18 @@ function setListeners(io) {
       console.log('a user connected');
       const game = (await createGame(socket)).outputs;
       console.log('game started.');
-      socket.on('human play', async (humanMove) => {
-        await playGame(socket, { game, humanMove });
-        console.log('sid: ', socket.id);
+      socket.on('play', async (humanMove, callback) => {
+        if (game.gameOver) {
+          socket.emit('game over', game.winner);
+        }
+        if (game.getActivePlayer() === 1) {
+          const aiMove = (await playGame(socket, { game, humanMove })).outputs;
+          console.log('🚀 ~ file: socket.js ~ line 19 ~ socket.on ~ aiMove', aiMove);
+          callback({ aiMove });
+        }
+        if (game.gameOver) {
+          socket.emit('game over', game.winner);
+        }
         console.log(game.ascii());
       });
       socket.on('disconnect', () => {

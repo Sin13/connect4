@@ -1,7 +1,8 @@
+// eslint-disable-next-line no-undef
+const socket = io();
+
 const colCount = 7;
 const rowCount = 6;
-// handling this in client side may allow cheating. TODO: handle this on server side.
-let isHumanTurn = true;
 
 // create and initialize the board
 const board = new Array(colCount);
@@ -38,21 +39,16 @@ const columns = document.getElementsByClassName('column');
 Array.from(columns).forEach((col) => {
   const colNumber = Number(col.id.at(7));
   col.addEventListener('click', () => {
-    if (isHumanTurn) {
-      isHumanTurn = false;
-      socket.emit('human play', colNumber);
-      const checker = createChecker(1);
-      addChecker(checker, colNumber);
-    }
+    socket.emit('play', colNumber, (response) => {
+      const { aiMove } = response;
+      const checker = createChecker(2);
+      addChecker(checker, aiMove);
+    });
+    const checker = createChecker(1);
+    addChecker(checker, colNumber);
   });
 });
 
-console.log('csid: ', socket.id);
-
-socket.on('ai play', (aiMove) => {
-  console.log('received aiMove: ', aiMove);
-  isHumanTurn = true;
-  // place ai's checker
-  const checker = createChecker(2);
-  addChecker(checker, aiMove);
+socket.on('game over', (winner) => {
+  console.log('game over, winner: ', winner);
 });
