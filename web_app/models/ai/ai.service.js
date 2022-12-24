@@ -9,7 +9,7 @@ async function createGame() {
       outputs: game,
     };
   } catch (error) {
-    console.error('error:', error.message);
+    console.error('error:', error);
     return {
       error: {
         statusCode: constants.statusCodes.ise,
@@ -27,7 +27,7 @@ async function play(game, humanMove) {
       outputs: aiMove,
     };
   } catch (error) {
-    console.error('error:', error.message);
+    console.error('error:', error);
     return {
       error: {
         statusCode: constants.statusCodes.ise,

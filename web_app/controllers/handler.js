@@ -20,23 +20,21 @@ async function handleRequest({ res, handle, extractOutput }) {
   }
 }
 
-async function handleWSRequest({ socket, handle, extractOutput }) {
+async function handleWSRequest({ socket, handle, response }) {
   try {
     const result = await handle();
     if (result.error) {
-      socket.to(socket.id).emit('error', result.error);
+      socket.emit('error', result.error);
       socket.disconnect();
-      return;
+      return result.error;
     }
-    if (extractOutput) {
-      const outputs = await extractOutput(result.outputs);
-      socket.to(socket.id).emit('ok', outputs);
-    } else {
-      socket.to(socket.id).emit('ok');
+    if (response) {
+      socket.emit(response.msg, await response.extractOutputs(result.outputs));
     }
+    return result;
   } catch (error) {
-    socket.to(socket.id).emit('error', error);
-    socket.disconnect();
+    console.log('error: ', error);
+    return error;
   }
 }
 

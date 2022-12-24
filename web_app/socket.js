@@ -5,13 +5,11 @@ function setListeners(io) {
   try {
     io.on('connection', async (socket) => {
       console.log('a user connected');
-      const game = await createGame(socket);
+      const game = (await createGame(socket)).outputs;
       console.log('game started.');
-      socket.join(socket.id); // remove this
       socket.on('human play', async (humanMove) => {
-        const aiMove = await playGame(game, humanMove);
+        await playGame(socket, { game, humanMove });
         console.log('sid: ', socket.id);
-        socket.emit('ai play', aiMove); // add to()
         console.log(game.ascii());
       });
       socket.on('disconnect', () => {
