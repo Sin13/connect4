@@ -20,6 +20,27 @@ async function handleRequest({ res, handle, extractOutput }) {
   }
 }
 
+async function handleWSRequest({ socket, handle, extractOutput }) {
+  try {
+    const result = await handle();
+    if (result.error) {
+      socket.to(socket.id).emit('error', result.error);
+      socket.disconnect();
+      return;
+    }
+    if (extractOutput) {
+      const outputs = await extractOutput(result.outputs);
+      socket.to(socket.id).emit('ok', outputs);
+    } else {
+      socket.to(socket.id).emit('ok');
+    }
+  } catch (error) {
+    socket.to(socket.id).emit('error', error);
+    socket.disconnect();
+  }
+}
+
 module.exports = {
   handleRequest,
+  handleWSRequest,
 };
