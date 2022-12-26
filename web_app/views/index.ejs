@@ -12,10 +12,10 @@
     />
     <!-- custom css -->
     <link rel="stylesheet/less" type="text/css" href="css/styles.less" />
-    <title>Document</title>
+    <title>Connect 4</title>
   </head>
   <body>
-    <div class="container text-center board">
+    <div class="container text-center board" id="board">
       <% for (let i = 0; i < 7; i++) { %>
       <div class="column justify-content-center" id="col-no-<%=i%>">
         <% for (let j = 6; j > 0; j--) { %>

@@ -10,12 +10,15 @@ function setListeners(io) {
       socket.on('play', async (humanMove, callback) => {
         if (game.gameOver) {
           socket.emit('game over', game.winner);
+          return;
         }
-        if (game.getActivePlayer() === 1) {
-          const aiMove = (await playGame(socket, { game, humanMove })).outputs;
-          console.log('🚀 ~ file: socket.js ~ line 19 ~ socket.on ~ aiMove', aiMove);
-          callback({ aiMove });
+        if (!game.canPlay(humanMove)) {
+          callback({ error: "can't play this move" });
+          return;
         }
+        const aiMove = (await playGame(socket, { game, humanMove })).outputs;
+        console.log('🚀 ~ file: socket.js ~ line 19 ~ socket.on ~ aiMove', aiMove);
+        callback({ aiMove });
         if (game.gameOver) {
           socket.emit('game over', game.winner);
         }

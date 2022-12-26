@@ -3,6 +3,7 @@ const socket = io();
 
 const colCount = 7;
 const rowCount = 6;
+let turn = 1;
 
 // create and initialize the board
 const board = new Array(colCount);
@@ -39,16 +40,27 @@ const columns = document.getElementsByClassName('column');
 Array.from(columns).forEach((col) => {
   const colNumber = Number(col.id.at(7));
   col.addEventListener('click', () => {
-    socket.emit('play', colNumber, (response) => {
-      const { aiMove } = response;
-      const checker = createChecker(2);
-      addChecker(checker, aiMove);
-    });
-    const checker = createChecker(1);
-    addChecker(checker, colNumber);
+    if (turn === 1) {
+      turn = 2;
+      socket.emit('play', colNumber, (response) => {
+        const { aiMove, error } = response;
+        if (error) {
+          return;
+        }
+        const checker = createChecker(2);
+        addChecker(checker, aiMove);
+        turn = 1;
+      });
+      const checker = createChecker(1);
+      addChecker(checker, colNumber);
+    }
   });
 });
 
 socket.on('game over', (winner) => {
   console.log('game over, winner: ', winner);
+  // quickly remove all event listeners by recreating the board
+  const oldBoard = document.getElementById('board');
+  const newBoard = oldBoard.cloneNode(true);
+  oldBoard.parentNode.replaceChild(newBoard, oldBoard);
 });
