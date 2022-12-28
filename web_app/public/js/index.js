@@ -21,7 +21,6 @@ function createChecker(player) {
 
 function addChecker(checker, colNumber) {
   // find a free cell
-  // const colNumber = Number(column.id.at(7));
   const freeCellIndex = board[colNumber].findIndex((e) => e === 0);
   if (freeCellIndex === -1) {
     return false;
@@ -59,8 +58,5 @@ Array.from(columns).forEach((col) => {
 
 socket.on('game over', (winner) => {
   console.log('game over, winner: ', winner);
-  // quickly remove all event listeners by recreating the board
-  const oldBoard = document.getElementById('board');
-  const newBoard = oldBoard.cloneNode(true);
-  oldBoard.parentNode.replaceChild(newBoard, oldBoard);
+  turn = -1;
 });

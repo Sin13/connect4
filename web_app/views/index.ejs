@@ -15,6 +15,7 @@
     <title>Connect 4</title>
   </head>
   <body>
+    <h1 class="neon" id="title">CONNECT 4</h1>
     <div class="container text-center board" id="board">
       <% for (let i = 0; i < 7; i++) { %>
       <div class="column justify-content-center" id="col-no-<%=i%>">
@@ -36,7 +37,7 @@
     <script src="https://cdn.jsdelivr.net/npm/less"></script>
     <!-- socket.io -->
     <script src="/socket.io/socket.io.js"></script>
-    <!-- <script src="js/socket.js"></script> -->
+    <script src="js/neonEffect.js"></script>
     <!-- custom js -->
     <script src="js/index.js"></script>
   </body>
