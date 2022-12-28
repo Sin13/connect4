@@ -60,7 +60,7 @@ socket.on('game over', (winner) => {
   turn = -1;
   console.log('game over, winner: ', winner);
   const modal = document.getElementById('game-over-modal');
-  const dialog = document.getElementById('modal-dialog');
+  const dialog = document.getElementById('modal-text');
   dialog.innerHTML = `${winner === 1 ? 'You' : 'AI'} Won The Game!`;
   // eslint-disable-next-line no-undef
   const myModal = new bootstrap.Modal(modal);

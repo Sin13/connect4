@@ -15,14 +15,13 @@
     <title>Connect 4</title>
   </head>
   <body>
+    <!-- attribute: "Neon text flicker glow" by "Johan Girod" on https://codepen.io/ganceab/pen/YZvKLQ -->
     <h1 class="neon" id="title">CONNECT 4</h1>
     <div class="container text-center board gradient-border" id="board">
       <% for (let i = 0; i < 7; i++) { %>
       <div class="column justify-content-center" id="col-no-<%=i%>">
         <% for (let j = 6; j > 0; j--) { %>
-        <div class="cell rounded-circle" id="cell-no-<%=i%>-<%=j%>">
-          <!-- <div class="checker rounded-circle"></div> -->
-        </div>
+        <div class="cell rounded-circle" id="cell-no-<%=i%>-<%=j%>"></div>
         <% } %>
       </div>
       <% } %>
@@ -30,9 +29,9 @@
     <!-- Modal -->
     <div class="modal fade" id="game-over-modal" tabindex="-1">
       <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
+        <div class="modal-content bg-dark">
           <div class="modal-header">
-            <h1 class="modal-title fs-5">Game Over!</h1>
+            <h1 class="modal-title fs-5 text-light">Game Over!</h1>
             <button
               type="button"
               class="btn-close"
@@ -40,9 +39,16 @@
               aria-label="Close"
             ></button>
           </div>
-          <div class="modal-body"><p class="text-center" id="modal-dialog"></p></div>
+          <div class="modal-body">
+            <p class="text-center text-light" id="modal-text"></p>
+          </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-primary" data-bs-dismiss="modal">OK</button>
+            <button type="button" class="btn btn-outline-primary" data-bs-dismiss="modal">
+              OK
+            </button>
+            <button type="button" onClick="window.location.reload();" class="btn btn-outline-info">
+              Restart
+            </button>
           </div>
         </div>
       </div>
