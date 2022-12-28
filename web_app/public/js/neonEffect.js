@@ -2,6 +2,8 @@
 /* eslint-disable no-param-reassign */
 /* eslint-disable no-return-assign */
 /* eslint-disable implicit-arrow-linebreak */
+
+// attribute: "Neon text flicker glow" by "Johan Girod" on https://codepen.io/ganceab/pen/YZvKLQ
 const targets = window.document.getElementsByClassName('neon');
 
 const flickerLetter = (letter) =>

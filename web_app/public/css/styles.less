@@ -1,68 +1,7 @@
 @import url('https://fonts.googleapis.com/css?family=Monoton');
 
 body {
-  background-color: #2A3137; 
-}
-
-.column {
-  display: inline-block;
-}
-
-.checker {
-  height: 5rem;
-  width: 5rem;
-  position: absolute;
-  background-color: #2e6181;
-  /* animation: neonGlow 2s infinite alternate cubic-bezier(0.455, 0.03, 0.515, 0.955),
-    drop 0.4s linear forwards; */
-    animation: drop 0.4s linear forwards;
-}
-
-.p1-color {
-  background-color: #0161A7;
-}
-
-.p2-color {
-  background-color: #FD002E;
-}
-
-.cell {
-  height: 6rem;
-  width: 6rem;
-  border: 4px solid white;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-bottom: 3;
-  margin-top: 3;
-  /* display: block; */
-  /* animation: neonGlow 2s infinite alternate cubic-bezier(0.455, 0.030, 0.515, 0.955); */
-}
-
-.board {
-  padding: 1rem;
-  width: 46rem;
-  /* animation: neonGlow 2s infinite alternate cubic-bezier(0.455, 0.030, 0.515, 0.955); */
-}
-
-.gradient-border {
-  --borderWidth: 6px;
-  background-color: #2A3137; 
-  position: relative;
-  border-radius: var(--borderWidth);
-}
-.gradient-border:after {
-  content: '';
-  position: absolute;
-  top: calc(-1 * var(--borderWidth));
-  left: calc(-1 * var(--borderWidth));
-  height: calc(100% + var(--borderWidth) * 2);
-  width: calc(100% + var(--borderWidth) * 2);
-  background: linear-gradient(60deg, #f79533, #f37055, #ef4e7b, #a166ab, #5073b8, #1098ad, #07b39b, #6fba82);
-  border-radius: calc(2 * var(--borderWidth));
-  z-index: -1;
-  animation: animatedgradient 3s ease alternate infinite;
-  background-size: 300% 300%;
+  background-color: #2a3137;
 }
 
 #title {
@@ -75,39 +14,93 @@ body {
   cursor: pointer;
 }
 
+.board {
+  padding: 1rem;
+  width: 46rem;
+}
+
+.column {
+  display: inline-block;
+}
+
+.cell {
+  height: 6rem;
+  width: 6rem;
+  border: 4px solid white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 3;
+  margin-top: 3;
+}
+
+.checker {
+  height: 5rem;
+  width: 5rem;
+  position: absolute;
+  background-color: #2e6181;
+  animation: drop 0.4s linear forwards;
+}
+
+.p1-color {
+  background-color: #0161a7;
+}
+
+.p2-color {
+  background-color: #fd002e;
+}
+
+.gradient-border {
+  --borderWidth: 6px;
+  background-color: #2a3137;
+  position: relative;
+  border-radius: var(--borderWidth);
+}
+
+.gradient-border:after {
+  content: '';
+  position: absolute;
+  top: calc(-1 * var(--borderWidth));
+  left: calc(-1 * var(--borderWidth));
+  height: calc(100% + var(--borderWidth) * 2);
+  width: calc(100% + var(--borderWidth) * 2);
+  background: linear-gradient(
+    60deg,
+    #f79533,
+    #f37055,
+    #ef4e7b,
+    #a166ab,
+    #5073b8,
+    #1098ad,
+    #07b39b,
+    #6fba82
+  );
+  border-radius: calc(2 * var(--borderWidth));
+  z-index: -1;
+  animation: animatedgradient 3s ease alternate infinite;
+  background-size: 300% 300%;
+}
+
 .copyright {
   text-align: center;
-	font-size: 0.8rem;
-	color: #EAF6F6;
-	margin: 1rem;
+  font-size: 0.8rem;
+  color: #eaf6f6;
+  margin: 1rem;
 }
 
+/* attribute: "Animated CSS Gradient Border" by "Mike Schultz" on https://codepen.io/mike-schultz/pen/NgQvGO */
 @keyframes animatedgradient {
-	0% {
-		background-position: 0% 50%;
-	}
-	50% {
-		background-position: 100% 50%;
-	}
-	100% {
-		background-position: 0% 50%;
-	}
-}
-
-@keyframes neonGlow {
   0% {
-    box-shadow: 0 0 10px rgba(255, 255, 255, 0.8), 0 0 20px rgba(255, 255, 255, 0.8),
-      0 0 22px rgba(255, 255, 255, 0.8), 0 0 40px rgba(66, 220, 219, 0.8),
-      0 0 60px rgba(66, 220, 219, 0.8), 0 0 80px rgba(66, 220, 219, 0.5);
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
   }
   100% {
-    box-shadow: 0 0 2px rgba(255, 255, 255, 0.8), 0 0 8px rgba(255, 255, 255, 0.8),
-      0 0 10px rgba(255, 255, 255, 0.8), 0 0 20px rgba(66, 220, 219, 0.8),
-      0 0 30px rgba(66, 220, 219, 0.8), 0 0 40px rgba(66, 220, 219, 0.8),
-      0 0 50px rgba(66, 220, 219, 0.5);
+    background-position: 0% 50%;
   }
 }
-
+/* attribute: "CSS Text Drop Animation" by "Lena Stanley" on https://codepen.io/lenasta92579651/pen/GRMByxX */
 @keyframes drop {
   0% {
     transform: translateY(-200px) scaleY(0.9);
@@ -133,7 +126,7 @@ body {
     opacity: 1;
   }
 }
-
+/* attribute: "Neon text flicker glow" by "Johan Girod" on https://codepen.io/ganceab/pen/YZvKLQ */
 @keyframes text-flicker-in-glow {
   0% {
     opacity: 0;
