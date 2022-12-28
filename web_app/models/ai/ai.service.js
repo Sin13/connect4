@@ -18,9 +18,24 @@ async function createGame() {
   }
 }
 
-async function play(game, humanMove) {
+async function playHuman(game, humanMove) {
   try {
     game.play(humanMove);
+    return {
+      success: true,
+    };
+  } catch (error) {
+    console.error('error:', error);
+    return {
+      error: {
+        statusCode: constants.statusCodes.ise,
+      },
+    };
+  }
+}
+
+async function playAI(game) {
+  try {
     const aiMove = game.playAI('hard');
     return {
       success: true,
@@ -37,6 +52,7 @@ async function play(game, humanMove) {
 }
 
 module.exports = {
-  play,
+  playHuman,
+  playAI,
   createGame,
 };

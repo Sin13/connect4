@@ -57,6 +57,12 @@ Array.from(columns).forEach((col) => {
 });
 
 socket.on('game over', (winner) => {
-  console.log('game over, winner: ', winner);
   turn = -1;
+  console.log('game over, winner: ', winner);
+  const modal = document.getElementById('game-over-modal');
+  const dialog = document.getElementById('modal-dialog');
+  dialog.innerHTML = `${winner === 1 ? 'You' : 'AI'} Won The Game!`;
+  // eslint-disable-next-line no-undef
+  const myModal = new bootstrap.Modal(modal);
+  myModal.show();
 });

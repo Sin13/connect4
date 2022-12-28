@@ -16,7 +16,7 @@
   </head>
   <body>
     <h1 class="neon" id="title">CONNECT 4</h1>
-    <div class="container text-center board" id="board">
+    <div class="container text-center board gradient-border" id="board">
       <% for (let i = 0; i < 7; i++) { %>
       <div class="column justify-content-center" id="col-no-<%=i%>">
         <% for (let j = 6; j > 0; j--) { %>
@@ -27,6 +27,28 @@
       </div>
       <% } %>
     </div>
+    <!-- Modal -->
+    <div class="modal fade" id="game-over-modal" tabindex="-1">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5">Game Over!</h1>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body"><p class="text-center" id="modal-dialog"></p></div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-primary" data-bs-dismiss="modal">OK</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <p class="copyright">© 2022 Sina Jalali</p>
     <!-- bootstrap -->
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
