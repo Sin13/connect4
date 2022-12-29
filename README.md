@@ -33,7 +33,7 @@
    A web based implementation of the <a href="https://en.wikipedia.org/wiki/Connect_Four"><strong>Connect Four</strong></a> game.
     <br />
     <br />
-    <a href="https://github.com/Sin13/connect4">View Demo</a>
+    <a href="https://youtu.be/eHFJw5kh1Xg">View Introduction</a>
     ·
     <a href="https://github.com/Sin13/connect4/issues">Report Bug</a>
     ·
@@ -107,6 +107,7 @@ For AI,  a machine learning model has been implemented in `./ai_model` but is no
 ### Prerequisites
 
 * npm
+
   ```sh
   npm install npm@latest -g
   ```
@@ -114,14 +115,17 @@ For AI,  a machine learning model has been implemented in `./ai_model` but is no
 ### Installation
 
 1. Clone the repo
+
    ```sh
    git clone https://github.com/Sin13/connect4.git
    ```
 2. Go to the project directory
+
    ```sh
    cd ./web_app/
    ```
 3. Install NPM packages
+
    ```sh
    npm install
    ```
